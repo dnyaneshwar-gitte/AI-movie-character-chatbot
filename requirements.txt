@@ -15,3 +15,16 @@ uvicorn==0.24.0
 python-dotenv==1.0.0
 pinecone-client==2.2.2  # For Pinecone integration
 pydantic==1.10.12
+
+#ENVIRONMENT 
+# .env.example
+GROQ_API_KEY=
+MONGO_DB_NAME=movie_chatbot
+MONGO_COLLECTION_NAME=dialogues
+MONGO_URI=
+VECTOR_DB_API_KEY=
+PINECONE_API_KEY=
+PINECONE_INDEX=aichatbot
+REDIS_URL=
+CELERY_BROKER_URL=
+CELERY_RESULT_BACKEND=
