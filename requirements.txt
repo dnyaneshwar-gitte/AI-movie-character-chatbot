@@ -1,0 +1,17 @@
+beautifulsoup4==4.12.2
+certifi==2023.7.22
+celery==5.3.4
+fastapi==0.103.2
+fastapi-limiter==0.1.6
+groq==0.1.0  # Replace with the correct version if needed
+httpx==0.25.1
+locust==2.15.1
+pymongo[srv]==4.7.1
+redis==5.0.0
+requests==2.31.0
+sentence-transformers==2.2.2
+torch==2.0.1  # Required for sentence-transformers
+uvicorn==0.24.0
+python-dotenv==1.0.0
+pinecone-client==2.2.2  # For Pinecone integration
+pydantic==1.10.12
