@@ -1,0 +1,23 @@
+<!-- interface.html -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Character Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="app.js"></script>
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-6">
+    <div class="bg-gray-800 rounded-2xl shadow-xl p-8 w-full max-w-2xl">
+      <h1 class="text-3xl font-bold mb-6 text-center">🎬 Chat with a Movie Character</h1>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-4">
+        <input id="character" type="text" placeholder="Character name" class="flex-1 p-3 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <input id="message" type="text" placeholder="Your message" class="flex-1 p-3 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-3 rounded text-white font-semibold">Send</button>
+      </div>
+
+      <div id="log" class="bg-gray-700 rounded p-4 overflow-y-auto h-80 text-sm font-mono whitespace-pre-wrap"></div>
+    </div>
+  </body>
+</html>
