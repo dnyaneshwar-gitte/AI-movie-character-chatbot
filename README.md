@@ -1,143 +1,138 @@
 # 🎬 AI Movie Character Chatbot
 
-An intelligent chatbot that lets you **chat with movie characters** using real movie scripts. It uses **FastAPI**, **MongoDB**, **Pinecone**, **Groq/OpenAI**, and a clean **React frontend**.
-
-> 💬 Ask: “Why so serious?” and get an answer like the real Joker.
+This is a full-stack application where users can chat with famous movie characters like **Joker**, **Iron Man**, etc., using real script dialogues. The chatbot combines **FastAPI**, **MongoDB**, **Pinecone**, **Groq**, and a **React frontend** to provide accurate and intelligent conversations.
 
 ---
 
-## 🔧 Tech Stack
+## 📌 Features
 
-**Backend**
-- FastAPI (Python)
-- MongoDB (Atlas)
-- Pinecone (Vector DB)
-- Redis (Rate limiting, caching)
-- Sentence Transformers
+- 🔐 JWT-based Signup & Login system
+- 🎭 Chat with AI-powered movie characters
+- 🧠 Embedding and vector similarity search using Pinecone
+- 💬 Fallback to Groq/OpenAI if dialogue not found
+- 🔁 Dialogue caching using Redis
+- 🌐 Full React-based frontend UI
+- ⚡ Rate limiting and response time optimization
+
+---
+
+## 🧰 Tech Stack
+
+**Backend (Python + FastAPI)**
+- FastAPI
+- MongoDB Atlas
+- Pinecone Vector DB
+- Redis
 - Groq/OpenAI (LLM API)
+- Sentence Transformers
+- BeautifulSoup (for script scraping)
 
-**Frontend**
-- React.js (with Router)
+**Frontend (React)**
+- React.js
 - Axios
-- Responsive CSS
-
-**Utilities**
-- JWT Authentication
-- dotenv for config
-- Locust (Load testing)
-- BeautifulSoup (script scraping)
+- React Router
+- Custom CSS
 
 ---
 
-## 📦 Installation Guide
+## 📦 How to Install and Run the Project
 
-### 1. 📥 Clone the Repository
+### 🔹 Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/ai-movie-chatbot.git
 cd ai-movie-chatbot
-⚙️ Backend Setup (FastAPI)
-2. 🔌 Create a virtual environment & install dependencies
-bash
-Copy code
-cd backend
-python -m venv venv
-source venv/bin/activate  # Use venv\Scripts\activate on Windows
-pip install -r requirements.txt
-3. 🔐 Set up .env
-Create a .env file inside backend/:
+```
+⚙️ Backend Setup
+🔸 Go to Backend Folder
 
-env
-Copy code
-MONGO_URI=your_mongo_connection_string
-PINECONE_API_KEY=your_pinecone_api_key
-PINECONE_ENV=your_pinecone_env
-GROQ_API_KEY=your_groq_or_openai_key
-JWT_SECRET=your_jwt_secret
-REDIS_URL=redis://localhost:6379
-4. 🚀 Run the backend server
-bash
-Copy code
-uvicorn main:app --reload
-Visit: http://localhost:8000
-API Docs: http://localhost:8000/docs
+        cd backend
+        
+🔸 Create Virtual Environment and Activate
 
-🎨 Frontend Setup (React)
-5. 📁 Install frontend dependencies
-bash
-Copy code
-cd ../frontend/movie-chatbot-frontend
-npm install
-6. 🧠 Start the frontend
-bash
-Copy code
-npm start
-Visit: http://localhost:3000
+    python -m venv venv
+    source venv/bin/activate  # Windows: venv\Scripts\activate
+    
+🔸 Install Required Packages
 
-🧪 Sample Usage
-🔐 1. Sign up/Login via React frontend
-Create an account
+    pip install -r requirements.txt
 
-Login to receive JWT token
+🔸 Create .env File (in backend/)
 
-🎭 2. Select a movie character
-E.g., “Joker”, “Iron Man”, or “Batman”
+    MONGO_URI=your_mongodb_uri
+    PINECONE_API_KEY=your_pinecone_api_key
+    PINECONE_ENV=your_pinecone_environment
+    GROQ_API_KEY=your_groq_or_openai_key
+    JWT_SECRET=your_jwt_secret
+    REDIS_URL=redis_URL
 
-💬 3. Ask a question
-Input:
+🔸 Run the Backend Server
 
-perl
-Copy code
-Why did you say 'I am Iron Man'?
-Response:
+    uvicorn main:app --reload
+    Server runs at: http://localhost:8000
+    Swagger docs: http://localhost:8000/docs
+
+🎨 Frontend Setup
+🔸 Go to Frontend Directory
+
+    cd ../frontend/movie-chatbot-frontend
+    
+🔸 Install Frontend Dependencies
+
+    npm install
+    
+🔸 Start the Frontend
+
+    npm start
+Frontend runs at: http://localhost:3000
 
 css
 Copy code
-I had to own who I was. No more secrets. I am Iron Man.
-🧠 How it works:
-The question is embedded using Sentence Transformers
-
-Searched in Pinecone index of scraped dialogues
-
-If match found → relevant response
-
-Else → fallback to Groq LLM response
-
-Cached in Redis
-
+You wanna know how I got these scars?
 📁 Folder Structure
-css
-Copy code
-ai-movie-chatbot/
-│
-├── backend/
-│   ├── main.py
-│   ├── auth.py
-│   ├── services.py
-│   ├── data_loader.py
-│   ├── database.py
-│   ├── pinecone_client.py
-│   ├── rate_limiter.py
-│   └── ...
-│
-├── frontend/
-│   └── movie-chatbot-frontend/
-│       ├── src/
-│       ├── public/
-│       ├── package.json
-│       └── ...
-│
-├── .gitignore
-├── requirements.txt
-└── README.md
-❌ What Not to Upload (Already in .gitignore)
-node_modules/
 
-__pycache__/
+    AI Movie/
+    ├── movie-chatbot-frontend/ # React Frontend
+    │ ├── src/
+    │ │ ├── App.jsx
+    │ │ ├── App.test.js
+    │ │ ├── index.js
+    │ │ ├── index.css
+    │ │ ├── App.css
+    │ │ ├── logo.svg
+    │ │ ├── reportWebVitals.js
+    │ │ └── setupTests.js
+    │ ├── .gitignore
+    │ ├── package.json
+    │ ├── package-lock.json
+    │ └── README.md
+    │
+    ├── auth_routes.py
+    ├── auth.py
+    ├── data_loader.py
+    ├── database.py
+    ├── history_routes.py
+    ├── locustfile.py
+    ├── main.py
+    ├── pinecone_client.py
+    ├── rate_limiter.py
+    ├── redis_cache.py
+    ├── services.py
+    ├── requirements.txt
+    └── README.md 
+.gitignore Suggestions
+Make sure this is in your .gitignore:
 
-.env
+    __pycache__/
+    *.pyc
+    .env
+    node_modules/
+    build/
+    dist/
+    .vscode/
+    .idea/
 
-.vscode/, .idea/
 
-*.log
+Pinecone and Groq/OpenAI for NLP capabilities
 
+FastAPI and React community
