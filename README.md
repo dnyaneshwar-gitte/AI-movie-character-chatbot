@@ -1,123 +1,143 @@
-🎬 AI Movie Character Chatbot
-An intelligent chatbot that lets users chat with movie characters! Built with FastAPI, MongoDB, Pinecone, Groq/OpenAI, and React. This project scrapes movie scripts, generates embeddings, and stores dialogue in vector DB for intelligent retrieval-based responses.
+# 🎬 AI Movie Character Chatbot
 
-📌 Features
-🔐 JWT-based authentication (Signup/Login)
+An intelligent chatbot that lets you **chat with movie characters** using real movie scripts. It uses **FastAPI**, **MongoDB**, **Pinecone**, **Groq/OpenAI**, and a clean **React frontend**.
 
-💬 Chat with movie characters based on real dialogues
+> 💬 Ask: “Why so serious?” and get an answer like the real Joker.
 
-📚 Dialogue scraping from script websites
+---
 
-🧠 RAG-based response system using Pinecone + LLMs (Groq/OpenAI)
+## 🔧 Tech Stack
 
-🧠 Semantic embeddings via Sentence Transformers
+**Backend**
+- FastAPI (Python)
+- MongoDB (Atlas)
+- Pinecone (Vector DB)
+- Redis (Rate limiting, caching)
+- Sentence Transformers
+- Groq/OpenAI (LLM API)
 
-💾 MongoDB (Atlas) for storing dialogues and user chats
+**Frontend**
+- React.js (with Router)
+- Axios
+- Responsive CSS
 
-⚡ Redis caching for fast response
+**Utilities**
+- JWT Authentication
+- dotenv for config
+- Locust (Load testing)
+- BeautifulSoup (script scraping)
 
-🌐 React frontend with clean UI
+---
 
-🧪 Locust for load testing
+## 📦 Installation Guide
 
-🏗️ Tech Stack
-Layer	Tech
-Frontend	React, Axios, React Router
-Backend	FastAPI, Pydantic, Uvicorn
-Auth	JWT, OAuth2, Passlib
-Database	MongoDB (Motor + PyMongo)
-Vector DB	Pinecone
-Embeddings	Sentence Transformers
-LLM	Groq (or OpenAI-compatible)
-Cache	Redis
-DevOps	dotenv, Locust, CORS middleware
+### 1. 📥 Clone the Repository
 
-🗂️ Project Structure
-bash
-Copy code
-├── backend/
-│   ├── main.py               # FastAPI app entry point
-│   ├── auth.py               # Authentication logic
-│   ├── services.py           # Business logic
-│   ├── database.py           # MongoDB operations
-│   ├── pinecone_client.py    # Pinecone connection + embedding
-│   ├── data_loader.py        # Script scrapers + ingestion
-│   ├── rate_limiter.py       # Redis-based rate limiting
-│   └── ...
-├── frontend/
-│   └── movie-chatbot-frontend/
-│       ├── src/
-│       │   ├── components/
-│       │   ├── ChatPage.js
-│       │   ├── Signup.js
-│       │   ├── Login.js
-│       │   └── ...
-│       ├── package.json
-│       └── ...
-├── .env
-├── requirements.txt
-└── README.md
-🚀 Getting Started
-⚙️ 1. Clone the Repository
-bash
-Copy code
-git clone https://github.com/yourusername/ai-movie-chatbot.git
+```bash
+git clone https://github.com/your-username/ai-movie-chatbot.git
 cd ai-movie-chatbot
-🧠 2. Backend Setup (FastAPI)
-⬇️ Install Dependencies
+⚙️ Backend Setup (FastAPI)
+2. 🔌 Create a virtual environment & install dependencies
 bash
 Copy code
 cd backend
+python -m venv venv
+source venv/bin/activate  # Use venv\Scripts\activate on Windows
 pip install -r requirements.txt
-🗝️ Set Environment Variables
-Create a .env file in the backend directory:
+3. 🔐 Set up .env
+Create a .env file inside backend/:
 
 env
 Copy code
-MONGO_URI=your_mongodb_connection_string
-PINECONE_API_KEY=your_pinecone_key
-PINECONE_ENV=your_pinecone_environment
+MONGO_URI=your_mongo_connection_string
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_ENV=your_pinecone_env
 GROQ_API_KEY=your_groq_or_openai_key
 JWT_SECRET=your_jwt_secret
 REDIS_URL=redis://localhost:6379
-▶️ Run the Server
+4. 🚀 Run the backend server
 bash
 Copy code
 uvicorn main:app --reload
-Your backend will be live at: http://127.0.0.1:8000
+Visit: http://localhost:8000
+API Docs: http://localhost:8000/docs
 
-🎨 3. Frontend Setup (React)
+🎨 Frontend Setup (React)
+5. 📁 Install frontend dependencies
 bash
 Copy code
-cd frontend/movie-chatbot-frontend
+cd ../frontend/movie-chatbot-frontend
 npm install
+6. 🧠 Start the frontend
+bash
+Copy code
 npm start
-Frontend will be available at: http://localhost:3000
+Visit: http://localhost:3000
 
-🧪 Example API Endpoints
-Method	Endpoint	Description
-POST	/auth/signup	Register new user
-POST	/auth/login	Login and get JWT token
-POST	/chat/character	Get movie character reply
-GET	/history	Get chat history
+🧪 Sample Usage
+🔐 1. Sign up/Login via React frontend
+Create an account
 
-📸 Screenshots
-(Add images of your app here: Chat UI, Signup/Login, etc.)
+Login to receive JWT token
 
-📌 Tips
-Use Postman to test API endpoints.
+🎭 2. Select a movie character
+E.g., “Joker”, “Iron Man”, or “Batman”
 
-You can preload movie scripts using data_loader.scrape_all_dialogues().
+💬 3. Ask a question
+Input:
 
-Pinecone index must be created before adding embeddings.
+perl
+Copy code
+Why did you say 'I am Iron Man'?
+Response:
 
-🧠 Sample Dialogue Flow
-User selects a movie character.
+css
+Copy code
+I had to own who I was. No more secrets. I am Iron Man.
+🧠 How it works:
+The question is embedded using Sentence Transformers
 
-Question is embedded using Sentence Transformers.
+Searched in Pinecone index of scraped dialogues
 
-Embedding is searched in Pinecone for top dialogues.
+If match found → relevant response
 
-If no match found, fallback to Groq/OpenAI response.
+Else → fallback to Groq LLM response
 
-Response is cached in Redis for fast future access.
+Cached in Redis
+
+📁 Folder Structure
+css
+Copy code
+ai-movie-chatbot/
+│
+├── backend/
+│   ├── main.py
+│   ├── auth.py
+│   ├── services.py
+│   ├── data_loader.py
+│   ├── database.py
+│   ├── pinecone_client.py
+│   ├── rate_limiter.py
+│   └── ...
+│
+├── frontend/
+│   └── movie-chatbot-frontend/
+│       ├── src/
+│       ├── public/
+│       ├── package.json
+│       └── ...
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
+❌ What Not to Upload (Already in .gitignore)
+node_modules/
+
+__pycache__/
+
+.env
+
+.vscode/, .idea/
+
+*.log
+
