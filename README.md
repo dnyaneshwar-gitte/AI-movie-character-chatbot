@@ -34,6 +34,16 @@ This is a full-stack application where users can chat with famous movie characte
 - Custom CSS
 
 ---
+## 📥 Loading Movie Scripts Before Chatting
+
+Before chatting with any movie character, you must first **load their script** into the database. This ensures that the chatbot can respond using actual dialogue from the character.
+
+### 🔧 Step 1: Use `data_loader.py` to Add Script
+
+Run this Python script to scrape and insert dialogues into MongoDB:
+
+```bash
+python data_loader.py
 
 ## 📦 How to Install and Run the Project
 
