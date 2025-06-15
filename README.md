@@ -132,7 +132,3 @@ Make sure this is in your .gitignore:
     .vscode/
     .idea/
 
-
-Pinecone and Groq/OpenAI for NLP capabilities
-
-FastAPI and React community
