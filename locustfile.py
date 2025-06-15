@@ -1,7 +1,7 @@
 from locust import HttpUser, task, between
 
 class MovieChatUser(HttpUser):
-    wait_time = between(1, 3)  # seconds to wait between tasks
+    wait_time = between(1, 3) 
 
     @task(3)
     def chat(self):

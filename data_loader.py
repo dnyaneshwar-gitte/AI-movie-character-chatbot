@@ -60,7 +60,6 @@ async def scrape_all_dialogues(url, batch_size=100):
     db = get_async_db()
     collection = db["dialogues"]
 
-    # Check for duplicates
     existing_set = set()
     for i in range(0, len(extracted_dialogues), 1000):
         batch = extracted_dialogues[i:i+1000]
@@ -82,7 +81,6 @@ async def scrape_all_dialogues(url, batch_size=100):
     result = await collection.insert_many(bulk_docs)
     inserted_ids = result.inserted_ids
 
-    # Pinecone batch
     pinecone_batch = []
 
     for idx, (c, d) in enumerate(new_dialogues):

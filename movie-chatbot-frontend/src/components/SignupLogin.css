@@ -1,0 +1,14 @@
+.auth-container{max-width:400px;margin:4rem auto;padding:2.5rem 2rem;background:#ffffff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.1);font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:#333333;}
+.auth-container h2{text-align:center;margin-bottom:1.8rem;font-weight:700;font-size:2rem;color:#2a9d8f;}
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"]{width:100%;padding:0.75rem 1rem;margin-bottom:1.25rem;border:1.8px solid #2a9d8f;border-radius:8px;font-size:1rem;transition:border-color 0.3s ease;box-sizing:border-box;outline-offset:2px;}
+.auth-container input[type="text"]:focus,
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus{border-color:#1e3c72;box-shadow:0 0 8px rgba(38,70,83,0.5);outline:none;}
+.auth-container button[type="submit"]{width:100%;padding:0.75rem;background:linear-gradient(135deg,#2a9d8f,#264653);border:none;border-radius:10px;color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;transition:background 0.3s ease,box-shadow 0.3s ease;}
+.auth-container button[type="submit"]:hover{background:linear-gradient(135deg,#1e3c72,#1b333f);box-shadow:0 6px 12px rgba(33,134,122,0.8);}
+.auth-container p.message{text-align:center;margin-top:1rem;color:#e63946;font-weight:600;}
+.auth-container p a{color:#2a9d8f;text-decoration:none;font-weight:600;}
+.auth-container p a:hover{text-decoration:underline;}
+@media (max-width:480px){.auth-container{margin:2rem 1rem;padding:2rem 1.5rem;}}

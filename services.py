@@ -12,7 +12,6 @@ load_dotenv()
 
 groq_client = groq.Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-# You can keep some known personalities here as a fallback or override.
 character_personalities = {
     "iron man": "You are Tony Stark, a genius billionaire playboy philanthropist. You are witty, sarcastic, and confident.",
     "tony": "iron man",
@@ -21,16 +20,14 @@ character_personalities = {
 }
 
 def get_or_create_personality(character: str):
-    # Check DB first
+    
     personality = get_personality(character)
     if personality:
         return personality
 
-    # Check hardcoded fallback
     if character in character_personalities:
         return character_personalities[character]
 
-    # Generate personality dynamically using Groq
     try:
         response = groq_client.chat.completions.create(
             model="llama3-8b-8192",
@@ -41,12 +38,11 @@ def get_or_create_personality(character: str):
         )
         personality_text = response.choices[0].message.content.strip()
 
-        # Save generated personality to DB for future use
         insert_personality(character, personality_text)
         return personality_text
 
     except Exception as e:
-        # Fallback personality if error occurs
+        
         return "You are a fictional character."
 
 def make_cache_key(character: str, user_message: str) -> str:
@@ -87,13 +83,12 @@ def get_character_response(character: str, user_message: str):
                 messages=prompt_messages
             ).choices[0].message.content.strip()
 
-            cache.setex(cache_key, 3600, response)  # Cache for 1 hour
+            cache.setex(cache_key, 3600, response)  
             return response
         except Exception as e:
             print(f"❌ Groq generation error: {e}")
             return retrieved_dialogues[0]
 
-    # Fallback if no context
     try:
         response = groq_client.chat.completions.create(
             model="llama3-8b-8192",

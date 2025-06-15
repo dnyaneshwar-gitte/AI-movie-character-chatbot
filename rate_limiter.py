@@ -3,22 +3,22 @@ import time
 from redis_cache import cache
 from fastapi import Request, HTTPException
 
-RATE_LIMIT = 100  # requests
-WINDOW_SIZE = 1  # seconds
+RATE_LIMIT = 100  
+WINDOW_SIZE = 1 
 
 def get_user_ip(request: Request) -> str:
-    return request.client.host  # optionally use X-Forwarded-For if behind proxy
+    return request.client.host  
 
 def is_rate_limited(user_ip: str) -> bool:
     key = f"rate:{user_ip}"
     current_count = cache.get(key)
 
     if current_count is None:
-        # Set initial count with expiration window
+        
         cache.setex(key, WINDOW_SIZE, 1)
         return False
     elif int(current_count) < RATE_LIMIT:
-        # Increment count
+    
         cache.incr(key)
         return False
     else:
